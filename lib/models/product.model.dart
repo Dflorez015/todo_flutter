@@ -7,7 +7,7 @@ class Product {
   int price;
 
   Product(this.name_product, this.descrition, this.cuantity, this.price,
-      {this.check = true});
+      {this.check = false});
 
   get() {
     return {
@@ -22,5 +22,17 @@ class Product {
 
   setId(String id) {
     this.id = id;
+  }
+
+  setCheck(bool check) {
+    this.check = check;
+  }
+
+  setValue(
+      String? name_product, String? descrition, int? cuantity, int? price) {
+    this.name_product = name_product ?? this.name_product;
+    this.descrition = descrition ?? this.descrition;
+    this.cuantity = cuantity ?? this.cuantity;
+    this.price = price ?? this.price;
   }
 }

@@ -124,15 +124,17 @@ Future<dynamic> formInvetory(
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: TextButton(
+                      style: ButtonStyle(
+                          elevation: MaterialStateProperty.all(2),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              main_background_color)),
                       onPressed: () => {
                             _saveForm() /*Navigator.of(context).pop(), adding()*/
                           },
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text((updating ? "Actualizar" : "Guardar"),
-                            style: const TextStyle(
-                              fontSize: 14,
-                            )),
+                            style: const TextStyle(fontSize: 16)),
                       )),
                 )
                 // MaterialButton()

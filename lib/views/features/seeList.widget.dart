@@ -43,7 +43,6 @@ class _Inventory extends State<Inventory> {
   _openCrud() {
     setState(() {
       _clearInputs();
-      // _list = ["a", ..._list];
       formInvetory(
           context,
           false,
@@ -73,6 +72,8 @@ class _Inventory extends State<Inventory> {
       ),
       backgroundColor: main_background_color,
       floatingActionButton: FloatingActionButton(
+        backgroundColor: text_color,
+        foregroundColor: second_color,
         onPressed: _openCrud,
         tooltip: 'Agregar artículo',
         child: const Icon(Icons.add),

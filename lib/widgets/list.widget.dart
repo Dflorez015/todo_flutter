@@ -21,23 +21,51 @@ class _InventoryList extends State<MyList> {
           itemCount: widget.list.length(),
           itemBuilder: (BuildContext build_context, int index) {
             final task = widget.list.getByIndex(index);
-            return TaskInventory(task: task.name_product);
+            return TaskInventory(task: task);
           }),
     );
   }
 }
 
-class TaskInventory extends StatelessWidget {
+class TaskInventory extends StatefulWidget {
   const TaskInventory({Key? key, required this.task}) : super(key: key);
-  final String task;
+  final Product task;
+
+  @override
+  State<TaskInventory> createState() => _TaskInventoryState();
+}
+
+class _TaskInventoryState extends State<TaskInventory> {
+  _setCheck(Product product, bool check) {
+    setState(() {
+      product.setCheck(check);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return (Card(
-      color: second_color,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-      child: ListTile(
-          title: Text(task,
-              style: const TextStyle(color: text_color, fontSize: 22))),
-    ));
+        color: second_color,
+        shape: shape_main,
+        child: Theme(
+          data: theme.copyWith(checkboxTheme: circularCheckBorder(theme)),
+          child: CheckboxListTile(
+            title: Text(widget.task.name_product,
+                style: const TextStyle(
+                    color: text_color,
+                    fontSize: 22,
+                    fontWeight: FontWeight.w600)),
+            subtitle: Text(widget.task.descrition,
+                style: const TextStyle(color: text_color, fontSize: 12)),
+            value: widget.task.check,
+            onChanged: (newValue) => {_setCheck(widget.task, newValue!)},
+            controlAffinity: ListTileControlAffinity.leading,
+            activeColor: text_color,
+            checkColor: main_background_color,
+            side: const BorderSide(color: text_color),
+            shape: shape_main,
+          ),
+        )));
   }
 }
