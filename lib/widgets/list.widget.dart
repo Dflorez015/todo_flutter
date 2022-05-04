@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/constants/themes.dart';
+import 'package:todo_list/models/listProduct.model.dart';
+import 'package:todo_list/models/product.model.dart';
 
 class MyList extends StatefulWidget {
   MyList({Key? key, required this.list}) : super(key: key);
-  List<String> list;
+  ListProduct list;
 
   @override
   State<StatefulWidget> createState() => _InventoryList();
@@ -16,10 +18,10 @@ class _InventoryList extends State<MyList> {
       height: MediaQuery.of(context).size.height * .65,
       child: ListView.builder(
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
-          itemCount: widget.list.length,
+          itemCount: widget.list.length(),
           itemBuilder: (BuildContext build_context, int index) {
-            final task = widget.list[index];
-            return TaskInventory(task: task);
+            final task = widget.list.getByIndex(index);
+            return TaskInventory(task: task.name_product);
           }),
     );
   }

@@ -10,9 +10,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'My list',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+              primary: Colors.white, backgroundColor: Colors.blueAccent),
+        ),
       ),
       home: const MyHomePage(title: 'Todo list'),
     );
